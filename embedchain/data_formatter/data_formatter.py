@@ -7,6 +7,7 @@ from embedchain.chunkers.qna_pair import QnaPairChunker
 from embedchain.chunkers.table import TableChunker
 from embedchain.chunkers.text import TextChunker
 from embedchain.chunkers.web_page import WebPageChunker
+from embedchain.chunkers.wikipedia import WikipediaChunker
 from embedchain.chunkers.youtube_video import YoutubeVideoChunker
 from embedchain.config import AddConfig
 from embedchain.config.AddConfig import ChunkerConfig, LoaderConfig
@@ -20,6 +21,7 @@ from embedchain.loaders.local_text import LocalTextLoader
 from embedchain.loaders.pdf_file import PdfFileLoader
 from embedchain.loaders.sitemap import SitemapLoader
 from embedchain.loaders.web_page import WebPageLoader
+from embedchain.loaders.wikipedia import WikipediaLoader
 from embedchain.loaders.youtube_video import YoutubeVideoLoader
 from embedchain.models.data_type import DataType
 
@@ -64,6 +66,7 @@ class DataFormatter(JSONSerializable):
             DataType.DOCX: DocxFileLoader,
             DataType.SITEMAP: SitemapLoader,
             DataType.DOCS_SITE: DocsSiteLoader,
+            DataType.WIKIPEDIA: WikipediaLoader,
             DataType.CSV: CsvLoader,
         }
         lazy_loaders = {DataType.NOTION}
@@ -102,6 +105,7 @@ class DataFormatter(JSONSerializable):
             DataType.WEB_PAGE: WebPageChunker,
             DataType.DOCS_SITE: DocsSiteChunker,
             DataType.NOTION: NotionChunker,
+            DataType.WIKIPEDIA: WikipediaChunker,
             DataType.CSV: TableChunker,
         }
         if data_type in chunker_classes:
