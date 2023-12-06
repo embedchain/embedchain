@@ -21,8 +21,8 @@ from embedchain.llm.base import BaseLlm
 from embedchain.llm.openai import OpenAILlm
 from embedchain.telemetry.posthog import AnonymousTelemetry
 from embedchain.utils import validate_config
-from embedchain.vectordb.base import BaseVectorDB
-from embedchain.vectordb.chroma import ChromaDB
+from embedchain.vector_db.base import BaseVectorDB
+from embedchain.vector_db.chroma import ChromaDB
 
 # Setup the user directory if doesn't exist already
 Client.setup_dir()

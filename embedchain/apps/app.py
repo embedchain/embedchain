@@ -2,9 +2,8 @@ from typing import Optional
 
 import yaml
 
-from embedchain.config import (AppConfig, BaseEmbedderConfig, BaseLlmConfig,
-                               ChunkerConfig)
-from embedchain.config.vectordb.base import BaseVectorDbConfig
+from embedchain.config import AppConfig, BaseEmbedderConfig, BaseLlmConfig, ChunkerConfig
+from embedchain.config.vector_db.base import BaseVectorDbConfig
 from embedchain.embedchain import EmbedChain
 from embedchain.embedder.base import BaseEmbedder
 from embedchain.embedder.openai import OpenAIEmbedder
@@ -13,8 +12,8 @@ from embedchain.helpers.json_serializable import register_deserializable
 from embedchain.llm.base import BaseLlm
 from embedchain.llm.openai import OpenAILlm
 from embedchain.utils import validate_config
-from embedchain.vectordb.base import BaseVectorDB
-from embedchain.vectordb.chroma import ChromaDB
+from embedchain.vector_db.base import BaseVectorDB
+from embedchain.vector_db.chroma import ChromaDB
 
 
 @register_deserializable
@@ -52,7 +51,7 @@ class App(EmbedChain):
         example: `from embedchain.config import BaseLlmConfig`, defaults to None
         :type llm_config: Optional[BaseLlmConfig], optional
         :param db: The database to use for storing and retrieving embeddings,
-        example: `from embedchain.vectordb.chroma_db import ChromaDb`, defaults to ChromaDb
+        example: `from embedchain.vector_db.chroma_db import ChromaDb`, defaults to ChromaDb
         :type db: BaseVectorDB, optional
         :param db_config: Allows you to configure the vector database,
         example: `from embedchain.config import ChromaDbConfig`, defaults to None
