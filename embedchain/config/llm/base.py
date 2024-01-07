@@ -1,7 +1,7 @@
 import logging
 import re
 from string import Template
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 from embedchain.config.base_config import BaseConfig
 from embedchain.helpers.json_serializable import register_deserializable
@@ -68,9 +68,9 @@ class BaseLlmConfig(BaseConfig):
         stream: bool = False,
         deployment_name: Optional[str] = None,
         system_prompt: Optional[str] = None,
-        where: Dict[str, Any] = None,
+        where: dict[str, Any] = None,
         query_type: Optional[str] = None,
-        callbacks: Optional[List] = None,
+        callbacks: Optional[list] = None,
         api_key: Optional[str] = None,
     ):
         """
@@ -104,9 +104,9 @@ class BaseLlmConfig(BaseConfig):
         :param system_prompt: System prompt string, defaults to None
         :type system_prompt: Optional[str], optional
         :param where: A dictionary of key-value pairs to filter the database results., defaults to None
-        :type where: Dict[str, Any], optional
+        :type where: dict[str, Any], optional
         :param callbacks: Langchain callback functions to use, defaults to None
-        :type callbacks: Optional[List], optional
+        :type callbacks: Optional[list], optional
         :raises ValueError: If the template is not valid as template should
         contain $context and $query (and optionally $history)
         :raises ValueError: Stream is not boolean

@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from embedchain.config.base_config import BaseConfig
 from embedchain.helpers.json_serializable import register_deserializable
@@ -29,7 +29,7 @@ class CacheSimilarityEvalConfig(BaseConfig):
         self.max_distance = max_distance
         self.positive = positive
 
-    def from_config(config: Optional[Dict[str, Any]]):
+    def from_config(config: Optional[dict[str, Any]]):
         if config is None:
             return CacheSimilarityEvalConfig()
         else:
@@ -63,7 +63,7 @@ class CacheInitConfig(BaseConfig):
         self.similarity_threshold = similarity_threshold
         self.auto_flush = auto_flush
 
-    def from_config(config: Optional[Dict[str, Any]]):
+    def from_config(config: Optional[dict[str, Any]]):
         if config is None:
             return CacheInitConfig()
         else:
@@ -83,7 +83,7 @@ class CacheConfig(BaseConfig):
         self.similarity_eval_config = similarity_eval_config
         self.init_config = init_config
 
-    def from_config(config: Optional[Dict[str, Any]]):
+    def from_config(config: Optional[dict[str, Any]]):
         if config is None:
             return CacheConfig()
         else:
