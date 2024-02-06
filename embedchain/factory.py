@@ -52,6 +52,7 @@ class EmbedderFactory:
         "openai": "embedchain.embedder.openai.OpenAIEmbedder",
         "vertexai": "embedchain.embedder.vertexai.VertexAIEmbedder",
         "google": "embedchain.embedder.google.GoogleAIEmbedder",
+        "fake": "embedchain.embedder.fake.FakeEmbedder",
         "mistralai": "embedchain.embedder.mistralai.MistralAIEmbedder",
     }
     provider_to_config_class = {
@@ -59,6 +60,7 @@ class EmbedderFactory:
         "openai": "embedchain.config.embedder.base.BaseEmbedderConfig",
         "gpt4all": "embedchain.config.embedder.base.BaseEmbedderConfig",
         "google": "embedchain.config.embedder.google.GoogleAIEmbedderConfig",
+        "fake": "embedchain.config.embedder.base.BaseEmbedderConfig",
     }
 
     @classmethod
@@ -83,6 +85,7 @@ class VectorDBFactory:
         "pinecone": "embedchain.vectordb.pinecone.PineconeDB",
         "qdrant": "embedchain.vectordb.qdrant.QdrantDB",
         "weaviate": "embedchain.vectordb.weaviate.WeaviateDB",
+        "vectara": "embedchain.vectordb.vectara.VectaraDB",
         "zilliz": "embedchain.vectordb.zilliz.ZillizVectorDB",
     }
     provider_to_config_class = {
@@ -92,6 +95,7 @@ class VectorDBFactory:
         "pinecone": "embedchain.config.vectordb.pinecone.PineconeDBConfig",
         "qdrant": "embedchain.config.vectordb.qdrant.QdrantDBConfig",
         "weaviate": "embedchain.config.vectordb.weaviate.WeaviateDBConfig",
+        "vectara": "embedchain.config.vectordb.vectara.VectaraDBConfig",
         "zilliz": "embedchain.config.vectordb.zilliz.ZillizDBConfig",
     }
 
