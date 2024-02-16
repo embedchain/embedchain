@@ -194,6 +194,7 @@ class GithubLoader(BaseLoader):
         logging.info(f"Searching github repo for query: {query}")
         repos_results = self.client.search_repositories(query)
         logging.info(f"Total repos found: {repos_results.totalCount}")
+
         for repo_result in tqdm(repos_results, total=repos_results.totalCount, desc="Loading discussions from github"):
             teams = repo_result.get_teams()
             for team in teams:
@@ -205,14 +206,12 @@ class GithubLoader(BaseLoader):
                     if not body:
                         logging.warning(f"Skipping discussion because empty content for: {url}")
                         continue
-                    comments = []
-                    comments_created_at = []
+
                     print("Discussion comments: ", discussion.comments_url)
-                    content = "\n".join([title, body, *comments])
+                    content = "\n".join([title, body])
                     metadata = {
                         "url": url,
                         "created_at": str(discussion.created_at),
-                        "comments_created_at": " ".join(comments_created_at),
                     }
                     data.append(
                         {
