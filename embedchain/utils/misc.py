@@ -407,6 +407,7 @@ def validate_config(config_data):
                     "google",
                     "aws_bedrock",
                     "mistralai",
+                    "clarifai",
                     "vllm",
                     "groq",
                     "nvidia",
@@ -448,6 +449,7 @@ def validate_config(config_data):
                     "azure_openai",
                     "google",
                     "mistralai",
+                    "clarifai",
                     "nvidia",
                 ),
                 Optional("config"): {
@@ -469,6 +471,7 @@ def validate_config(config_data):
                     "azure_openai",
                     "google",
                     "mistralai",
+                    "clarifai",
                     "nvidia",
                 ),
                 Optional("config"): {
