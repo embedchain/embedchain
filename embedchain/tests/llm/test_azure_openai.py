@@ -12,7 +12,7 @@ def azure_openai_llm():
     config = BaseLlmConfig(
         deployment_name="azure_deployment",
         temperature=0.7,
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         max_tokens=50,
         system_prompt="System Prompt",
     )
@@ -39,7 +39,7 @@ def test_get_answer(azure_openai_llm):
         mock_chat.assert_called_once_with(
             deployment_name=azure_openai_llm.config.deployment_name,
             openai_api_version="2024-02-01",
-            model_name=azure_openai_llm.config.model or "gpt-3.5-turbo",
+            model_name=azure_openai_llm.config.model or "gpt-4o-mini",
             temperature=azure_openai_llm.config.temperature,
             max_tokens=azure_openai_llm.config.max_tokens,
             streaming=azure_openai_llm.config.stream,
@@ -57,7 +57,7 @@ def test_get_messages(azure_openai_llm):
 
 
 def test_when_no_deployment_name_provided():
-    config = BaseLlmConfig(temperature=0.7, model="gpt-3.5-turbo", max_tokens=50, system_prompt="System Prompt")
+    config = BaseLlmConfig(temperature=0.7, model="gpt-4o-mini", max_tokens=50, system_prompt="System Prompt")
     with pytest.raises(ValueError):
         llm = AzureOpenAILlm(config)
         llm.get_llm_model_answer("Test Prompt")
@@ -67,7 +67,7 @@ def test_with_api_version():
     config = BaseLlmConfig(
         deployment_name="azure_deployment",
         temperature=0.7,
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         max_tokens=50,
         system_prompt="System Prompt",
         api_version="2024-02-01",
@@ -80,7 +80,7 @@ def test_with_api_version():
         mock_chat.assert_called_once_with(
             deployment_name="azure_deployment",
             openai_api_version="2024-02-01",
-            model_name="gpt-3.5-turbo",
+            model_name="gpt-4o-mini",
             temperature=0.7,
             max_tokens=50,
             streaming=False,
