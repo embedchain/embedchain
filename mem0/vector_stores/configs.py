@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -26,20 +26,30 @@ class QdrantConfig(BaseModel):
         return values
 
 
+class MilvusConfig(BaseModel):
+    uri: Optional[str] = Field(
+        default="./milvus_local.db",
+        description="URI for Milvus server, default set to local db; for performant Milvus on server uri e.g.http://localhost:19530 ; for zilliz cloud on cloud endpoint"
+    )
+    token: Optional[str] = Field(None, description="Token pair with uri depends on specific Milvus server")
+
+
 class VectorStoreConfig(BaseModel):
     provider: str = Field(
-        description="Provider of the vector store (e.g., 'qdrant', 'chromadb', 'elasticsearch')",
+        description="Provider of the vector store (e.g., 'qdrant', 'chromadb', 'elasticsearch', 'milvus')",
         default="qdrant",
     )
-    config: QdrantConfig = Field(
+    config: Union[QdrantConfig, MilvusConfig] = Field(
         description="Configuration for the specific vector store",
-        default=QdrantConfig(path="/tmp/qdrant"),
+        default=QdrantConfig(path="/tmp/qdrant")
     )
 
     @field_validator("config")
     def validate_config(cls, v, values):
-        provider = values.data.get("provider")
+        provider = values.get("provider")
         if provider == "qdrant":
             return QdrantConfig(**v.model_dump())
+        elif provider == "milvus":
+            return MilvusConfig(**v.model_dump())
         else:
             raise ValueError(f"Unsupported vector store provider: {provider}")
