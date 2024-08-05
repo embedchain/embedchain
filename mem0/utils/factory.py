@@ -17,6 +17,7 @@ class LlmFactory:
         "together": "mem0.llms.together.TogetherLLM",
         "aws_bedrock": "mem0.llms.aws_bedrock.AWSBedrockLLM",
         "litellm": "mem0.llms.litellm.LiteLLM",
+        "qwen": "mem0.llms.qwen.QwenLLM",
         "ollama": "mem0.llms.ollama.OllamaLLM",
         "azure_openai": "mem0.llms.azure_openai.AzureOpenAILLM",
     }
@@ -30,10 +31,14 @@ class LlmFactory:
             return llm_instance(base_config)
         else:
             raise ValueError(f"Unsupported Llm provider: {provider_name}")
-        
+
+
 class EmbedderFactory:
     provider_to_class = {
         "openai": "mem0.embeddings.openai.OpenAIEmbedding",
+        "ollama": "mem0.embeddings.ollama.OllamaEmbedding",
+        "huggingface": "mem0.embeddings.huggingface.HuggingFaceEmbedding",
+        "qwen": "mem0.embeddings.qwen.QwenEmbedding",
         "ollama": "mem0.embeddings.ollama.OllamaEmbedding"
     }
 
@@ -45,7 +50,8 @@ class EmbedderFactory:
             return embedder_instance
         else:
             raise ValueError(f"Unsupported Embedder provider: {provider_name}")
-        
+
+            
 class VectorStoreFactory:
     provider_to_class = {
         "qdrant": "mem0.vector_stores.qdrant.Qdrant",
